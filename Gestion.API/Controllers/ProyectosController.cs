@@ -44,7 +44,9 @@ namespace Gestion.API.Controllers
         {
             // Insertar un proyecto 
             conection.Execute
-                ("INSERT INTO Proyectos (Id, Nombre, Descripcion, FechaInicio, FechaFin) VALUES (@Id, @Nombre, @Descripcion, @FechaInicio, @FechaFin)", proyecto);
+                ("INSERT INTO Proyectos (Nombre, Descripcion, FechaInicio, FechaFin) VALUES (@Nombre, @Descripcion, @FechaInicio, @FechaFin)", proyecto);
+            
+
             return proyecto;
         }
 
@@ -66,5 +68,6 @@ namespace Gestion.API.Controllers
         }
     }
 }
+
 
 

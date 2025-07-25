@@ -16,10 +16,10 @@ namespace Gestion.Modelos
         public DateTime FechaVencimiento { get; set; }
 
         
-
+        
         // Relacion
         public int ProyectoId { get; set; } 
-        public int UsuarioId { get; set; } 
+        public int? UsuarioId { get; set; } 
 
         // Navegacion
         public Proyecto? Proyecto { get; set; } 

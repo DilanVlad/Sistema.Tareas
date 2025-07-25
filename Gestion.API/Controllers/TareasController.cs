@@ -26,6 +26,24 @@ namespace Gestion.API.Controllers
             var tareas = conection.Query<Modelos.Tarea>("SELECT * FROM Tareas").ToList();
             return tareas;
         }
+        // --------
+        [HttpGet("proyecto/{proyectoId}")]
+        public IEnumerable<Tarea> GetByProyecto(int proyectoId)
+        {
+            var tareas = conection.Query<Tarea>
+                ("SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = proyectoId });
+            return tareas;
+        }
+
+        [HttpGet("usuario/{usuarioId}")]
+        public IEnumerable<Tarea> GetByUsuario(int usuarioId)
+        {
+            var tareas = conection.Query<Tarea>
+                ("SELECT * FROM Tareas WHERE UsuarioId = @UsuarioId", new { UsuarioId = usuarioId });
+            return tareas;
+        }
+
+
 
         // GET api/<TareasController>/5
         [HttpGet("{id}")]
@@ -36,12 +54,13 @@ namespace Gestion.API.Controllers
             return tarea;
         }
 
+
         // POST api/<TareasController>
         [HttpPost]
         public Tarea Post([FromBody] Tarea tarea)
         {
             conection.Execute
-                ("INSERT INTO Tareas (Id, Nombre, Descripcion, Estado, FechaCreacion, FechaVencimiento, ProyectoId, UsuarioId) VALUES (@Id, @Nombre, @Descripcion, @Estado, @FechaCreacion, @FechaVencimiento, @ProyectoId, @UsuarioId)", tarea);
+                ("INSERT INTO Tareas (Nombre, Descripcion, Estado, FechaCreacion, FechaVencimiento, ProyectoId, UsuarioId) VALUES (@Nombre, @Descripcion, @Estado, @FechaCreacion, @FechaVencimiento, @ProyectoId, @UsuarioId)", tarea);
             return tarea;
         }
 
