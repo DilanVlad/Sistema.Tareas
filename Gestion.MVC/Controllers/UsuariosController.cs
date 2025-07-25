@@ -19,6 +19,7 @@ namespace Gestion.MVC.Controllers
         public ActionResult Details(int id)
         {
             var data = Crud<Modelos.Usuario>.GetById(id);
+            data.Tareas = Crud<Modelos.Tarea>.GetBy("usuario", id);
             return View(data);
         }
 

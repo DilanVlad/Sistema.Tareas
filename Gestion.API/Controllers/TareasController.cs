@@ -20,7 +20,7 @@ namespace Gestion.API.Controllers
 
         }
         // GET: api/<TareasController>
-        [HttpGet]
+        [HttpGet]   
         public IEnumerable<Modelos.Tarea> Get()
         {
             var tareas = conection.Query<Modelos.Tarea>("SELECT * FROM Tareas").ToList();

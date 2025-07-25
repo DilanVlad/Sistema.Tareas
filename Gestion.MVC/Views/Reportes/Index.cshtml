@@ -1,0 +1,95 @@
+@model Gestion.MVC.Models.ReportesViewModel
+
+@{
+    ViewData["Title"] = "Reportes de Tareas";
+}
+
+<h1>Reportes de Tareas</h1>
+
+<form method="get" asp-action="Index">
+    <div class="row mb-3">
+        <div class="col">
+            <label>Estado:</label>
+            <select name="estadoFiltro" class="form-control">
+                <option value="">Todos</option>
+                <option value="pendiente" selected="@(Model.EstadoFiltro == "pendiente")">Pendiente</option>
+                <option value="en progreso" selected="@(Model.EstadoFiltro == "en progreso")">En progreso</option>
+                <option value="completada" selected="@(Model.EstadoFiltro == "completada")">Completada</option>
+            </select>
+
+        </div>
+        <div class="col">
+            <label>Ordenar por:</label>
+            <select name="ordenarPor" class="form-control">
+                <option value="">Sin orden</option>
+                <option value="fecha" selected="@(Model.OrdenarPor == "fecha")">Fecha de vencimiento</option>
+                <option value="proyecto" selected="@(Model.OrdenarPor == "proyecto")">Proyecto</option>
+                <option value="usuario" selected="@(Model.OrdenarPor == "usuario")">Usuario</option>
+                <option value="estado" selected="@(Model.OrdenarPor == "estado")">Estado</option>
+            </select>
+        </div>
+
+        <div class="col">
+            <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+        </div>
+
+    </div>
+</form>
+
+<h3>Tareas agrupadas por Proyecto</h3>
+@foreach (var grupo in Model.TareasPorProyecto)
+{
+    <h4>Proyecto ID: @grupo.Key</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Fecha de vencimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var tarea in grupo.Value)
+        {
+            <tr>
+                <td>@tarea.Nombre</td>
+                <td>@tarea.Descripcion</td>
+                <td>@tarea.Estado</td>
+                <td>@(tarea.Usuario != null ? tarea.Usuario.Nombre : "No asignado")</td>
+                <td>@tarea.FechaVencimiento.ToShortDateString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<h3>Tareas agrupadas por Usuario</h3>
+@foreach (var grupo in Model.TareasPorUsuario)
+{
+    <h4>Usuario ID: @(grupo.Key.HasValue ? grupo.Key.Value.ToString() : "Sin usuario")</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Proyecto</th>
+                <th>Fecha de vencimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var tarea in grupo.Value)
+        {
+            <tr>
+                <td>@tarea.Nombre</td>
+                <td>@tarea.Descripcion</td>
+                <td>@tarea.Estado</td>
+                <td>@(tarea.Proyecto != null ? tarea.Proyecto.Nombre : tarea.ProyectoId.ToString())</td>
+                <td>@tarea.FechaVencimiento.ToShortDateString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

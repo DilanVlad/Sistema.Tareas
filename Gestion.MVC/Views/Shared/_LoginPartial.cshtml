@@ -1,0 +1,29 @@
+﻿
+@{
+    var usuarioId = Context.Session.GetString("UsuarioId");
+    var usuarioNombre = Context.Session.GetString("UsuarioNombre");
+    bool estaLogueado = !string.IsNullOrEmpty(usuarioId);
+}
+
+@if (estaLogueado)
+{
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item" >
+            <span>Hola, @usuarioNombre!</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-controller="Auth" asp-action="Logout">Cerrar Sesión</a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-controller="Auth" asp-action="Login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-controller="Auth" asp-action="Register">Registrarse</a>
+        </li>
+    </ul>
+}
