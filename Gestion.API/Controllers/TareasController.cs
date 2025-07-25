@@ -24,6 +24,7 @@ namespace Gestion.API.Controllers
         public IEnumerable<Modelos.Tarea> Get()
         {
             var tareas = conection.Query<Modelos.Tarea>("SELECT * FROM Tareas").ToList();
+           
             return tareas;
         }
         // --------

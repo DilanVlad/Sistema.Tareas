@@ -6,11 +6,12 @@
 
 <h1>Index</h1>
 
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+    <thead style="background-color: #27CCF5">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -31,15 +32,15 @@
                 @Html.DisplayNameFor(model => model.FechaVencimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProyectoId)
+                Proyecto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UsuarioId)
+                Usuario
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="background-color: #E7F9FE">
 @foreach (var item in Model) {
         <tr>
             <td>

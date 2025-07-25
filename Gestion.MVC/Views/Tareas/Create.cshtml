@@ -24,14 +24,6 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                
-                <select asp-for="Estado" class="form-control" asp-items="ViewBag.Estados">
-                    <option value="">-- Selecciona un Estado --</option>
-                </select>
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="FechaCreacion" class="control-label"></label>
                 <input asp-for="FechaCreacion" class="form-control" />
                 <span asp-validation-for="FechaCreacion" class="text-danger"></span>
@@ -43,6 +35,14 @@
             </div>
 
 
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                
+                <select asp-for="Estado" class="form-control" asp-items="ViewBag.Estados">
+                    <option value="">-- Selecciona un Estado --</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ProyectoId" class="control-label">Asignación de Proyecto</label>
                 <select asp-for="ProyectoId" class="form-control" asp-items="ViewBag.Proyectos">

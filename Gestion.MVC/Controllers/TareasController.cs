@@ -84,7 +84,7 @@ namespace Gestion.MVC.Controllers
         public ActionResult Edit(int id)
         {
             var data = Crud<Modelos.Tarea>.GetById(id);
-            //ViewBag.Estados = GetEstado();
+            ViewBag.Estados = GetEstado();
             ViewBag.Proyectos = getProyectos();
             ViewBag.Usuarios = getUsuarios();
             return View(data);

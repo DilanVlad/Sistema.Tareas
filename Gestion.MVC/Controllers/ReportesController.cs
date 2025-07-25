@@ -13,19 +13,19 @@ namespace Gestion.MVC.Controllers
             var tareas = Crud<Modelos.Tarea>.GetAll();
 
             
-            if (!string.IsNullOrEmpty(estadoFiltro))
+            if (!string.IsNullOrEmpty(estadoFiltro)) // Verifica si el filtro no esta vacio
             {
                 tareas = tareas.Where(t => t.Estado.ToLower() == estadoFiltro.ToLower()).ToList();
             }
 
 
-            if (proyectoId.HasValue)
+            if (proyectoId.HasValue) // verifica si tiene un valor el ProyectoId
             {
                 tareas = tareas.Where(t => t.ProyectoId == proyectoId.Value).ToList();
             }
 
             
-            if (usuarioId.HasValue)
+            if (usuarioId.HasValue) // verifica si tiene un valor el UsuarioId
             {
                 tareas = tareas.Where(t => t.UsuarioId == usuarioId.Value).ToList();
             }
@@ -35,7 +35,7 @@ namespace Gestion.MVC.Controllers
             // Ordenar
             tareas = ordenarPor?.ToLower() switch
             {
-                "fecha" => tareas.OrderBy(t => t.FechaVencimiento).ToList(),
+                "fecha" => tareas.OrderBy(t => t.FechaVencimiento).ToList(), 
                 "proyecto" => tareas.OrderBy(t => t.ProyectoId).ToList(),
                 "usuario" => tareas.OrderBy(t => t.UsuarioId).ToList(),
                 "estado" => tareas.OrderBy(t => t.Estado).ToList(),
@@ -60,7 +60,7 @@ namespace Gestion.MVC.Controllers
             return View(viewModel);
         }
 
-        // GET: ReportesController/Details/5
+        
 
         
     }

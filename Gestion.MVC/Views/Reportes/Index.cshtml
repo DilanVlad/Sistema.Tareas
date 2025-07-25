@@ -41,7 +41,7 @@
 {
     <h4>Proyecto ID: @grupo.Key</h4>
     <table class="table table-bordered">
-        <thead>
+        <thead style="background-color: #8FFAC3">
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -50,14 +50,15 @@
                 <th>Fecha de vencimiento</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color: #E7FEF2">
         @foreach (var tarea in grupo.Value)
         {
             <tr>
                 <td>@tarea.Nombre</td>
                 <td>@tarea.Descripcion</td>
                 <td>@tarea.Estado</td>
-                <td>@(tarea.Usuario != null ? tarea.Usuario.Nombre : "No asignado")</td>
+                <td>@(tarea.Usuario != null ? tarea.Usuario.Nombre :  tarea.UsuarioId.ToString())</td>
+                
                 <td>@tarea.FechaVencimiento.ToShortDateString()</td>
             </tr>
         }
@@ -70,7 +71,7 @@
 {
     <h4>Usuario ID: @(grupo.Key.HasValue ? grupo.Key.Value.ToString() : "Sin usuario")</h4>
     <table class="table table-bordered">
-        <thead>
+        <thead style="background-color: #8FFAC3">
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -79,7 +80,7 @@
                 <th>Fecha de vencimiento</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color: #E7FEF2">
         @foreach (var tarea in grupo.Value)
         {
             <tr>
